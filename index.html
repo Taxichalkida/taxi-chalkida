@@ -4,6 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#050910">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
 <meta name="description" content="Online αιτήματα διαδρομών ταξί στη Χαλκίδα και την Εύβοια.">
 <title>Taxi Chalkida | Online Κρατήσεις</title>
 <style>
@@ -31,7 +33,7 @@ footer{border-top:1px solid var(--line);padding:24px 0;color:var(--muted);font-s
 <body>
 <header><div class="wrap nav">
 <a class="brand" href="#top">TAXI <span>CHALKIDA</span><small>ΑΣΦΑΛΕΙΣ • ΑΝΕΤΕΣ • ΑΞΙΟΠΙΣΤΕΣ ΔΙΑΔΡΟΜΕΣ</small></a>
-<nav><a href="#top">Αρχική</a><a href="#booking">Κράτηση</a><a href="#services">Υπηρεσίες</a><a href="#routes">Διαδρομές</a><a href="#contact">Επικοινωνία</a></nav>
+<nav><a href="#top">Αρχική</a><a href="#booking">Κράτηση</a><a href="#services">Υπηρεσίες</a><a href="#routes">Διαδρομές</a><a href="#prices">Τιμοκατάλογος</a><a href="#contact">Επικοινωνία</a></nav>
 <a class="call" href="tel:+306989937090">☎ 698 993 7090</a>
 </div></header>
 <main id="top">
@@ -68,7 +70,15 @@ footer{border-top:1px solid var(--line);padding:24px 0;color:var(--muted);font-s
 <div class="route"><b>Χαλκίδα → Αθήνα</b><small>Με προγραμματισμό</small></div>
 <div class="route"><b>Χαλκίδα → Ερέτρια</b><small>Τοπικές μετακινήσεις</small></div>
 <div class="route"><b>Χαλκίδα → Εύβοια</b><small>Ρώτησε για τη διαδρομή σου</small></div>
-</div></section></main>
+</div></section>
+<section class="routes wrap" id="prices"><div class="eyebrow">Καθαρή ενημέρωση • Χωρίς κρυφές χρεώσεις</div><h2 class="section-title">Τιμοκατάλογος</h2>
+<div class="routegrid">
+<div class="route"><b>Τοπικές διαδρομές</b><small>Χαλκίδα και γύρω περιοχές</small><p style="color:var(--blue2);font-weight:800;margin-bottom:0">Τιμή κατόπιν συνεννόησης</p></div>
+<div class="route"><b>Αεροδρόμιο Αθήνας</b><small>Μεταφορά από ή προς το αεροδρόμιο</small><p style="color:var(--blue2);font-weight:800;margin-bottom:0">Τιμή κατόπιν συνεννόησης</p></div>
+<div class="route"><b>Αθήνα και υπεραστικές διαδρομές</b><small>Προγραμματισμένες μετακινήσεις</small><p style="color:var(--blue2);font-weight:800;margin-bottom:0">Τιμή κατόπιν συνεννόησης</p></div>
+<div class="route"><b>Εύβοια και λοιποί προορισμοί</b><small>Κατόπιν αιτήματος</small><p style="color:var(--blue2);font-weight:800;margin-bottom:0">Τιμή κατόπιν συνεννόησης</p></div>
+</div><p class="note" style="font-size:.9rem;margin-top:14px">Για την τελική τιμή, επικοινώνησε μαζί μας πριν από τη διαδρομή. Η χρέωση επιβεβαιώνεται κατόπιν συνεννόησης.</p>
+<a class="btn" style="max-width:360px" href="#booking">ΖΗΤΗΣΕ ΠΡΟΣΦΟΡΑ / ΚΡΑΤΗΣΗ ↗</a></section></main>
 <footer id="contact"><div class="wrap foot"><span>© <span id="year"></span> Taxi Chalkida</span><span>Τηλέφωνο: <a href="tel:+306989937090">698 993 7090</a></span><span>Online αίτημα • Επιβεβαίωση κατόπιν επικοινωνίας</span></div></footer>
 <script>
 const nowTab=document.getElementById('nowTab'),laterTab=document.getElementById('laterTab'),dateField=document.getElementById('date'),timeField=document.getElementById('time');
@@ -81,4 +91,5 @@ document.getElementById('bookingForm').addEventListener('submit',function(e){
  window.location.href='https://wa.me/306989937090?text='+msg;
 });
 </script>
+<script>if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js").catch(()=>{}));}</script>
 </body></html>
