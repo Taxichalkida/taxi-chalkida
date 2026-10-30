@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#050910">
+<meta name="description" content="Online αιτήματα διαδρομών ταξί στη Χαλκίδα και την Εύβοια.">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="icons/icon-192.png">
-<meta name="description" content="Online αιτήματα διαδρομών ταξί στη Χαλκίδα και την Εύβοια.">
 <title>Taxi Chalkida | Online Κρατήσεις</title>
 <style>
 :root{--bg:#050910;--panel:#0b1421;--blue:#1688ff;--blue2:#42b6ff;--text:#f5f8fc;--muted:#a8b6c8;--line:#1b3048}
@@ -22,12 +22,14 @@ h1{font-size:clamp(2.4rem,5vw,4.5rem);line-height:1.02;letter-spacing:-.045em;ma
 .card{margin-top:24px;background:rgba(5,12,21,.94);border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:0 20px 55px #0005}
 .tabs{display:flex;gap:8px;margin-bottom:14px}.tab{flex:1;border:1px solid var(--line);background:#0a1421;color:#d8e6f7;border-radius:10px;padding:10px;cursor:pointer}.tab.active{border-color:var(--blue);background:#0b2b4a;color:white}
 .formgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.field{display:flex;flex-direction:column;gap:6px}.field.full{grid-column:1/-1}label{font-size:.78rem;color:#b8c7d9}input,select{width:100%;padding:13px 12px;background:#0b1522;border:1px solid #24374d;border-radius:9px;color:#fff;font:inherit;min-width:0}input:focus,select:focus{outline:2px solid #1688ff66;border-color:var(--blue)}
-.btn{display:block;text-align:center;border:0;border-radius:10px;padding:14px 18px;background:linear-gradient(100deg,#0876ed,#159bff);color:white;font-weight:900;letter-spacing:.04em;cursor:pointer;width:100%;margin-top:13px}.btn:hover{filter:brightness(1.1)}
+.send-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:13px}
+.btn{display:block;text-align:center;border:0;border-radius:10px;padding:14px 10px;background:linear-gradient(100deg,#0876ed,#159bff);color:white;font-weight:900;letter-spacing:.025em;cursor:pointer;width:100%;font-size:.88rem}
+.btn.sms{background:linear-gradient(100deg,#087d68,#10a889)}.btn:hover{filter:brightness(1.1)}
 .note{font-size:.76rem;color:#92a5bb;margin:10px 2px 0}.features{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;padding:24px 0 34px}.feature{padding:17px;border:1px solid var(--line);border-radius:13px;background:linear-gradient(145deg,#0c1725,#070d16)}.feature strong{display:block;margin-bottom:5px}.feature span{font-size:.86rem;color:var(--muted)}
 section.routes{padding:22px 0 58px}.section-title{font-size:2rem;margin:8px 0 18px}.routegrid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.route{border:1px solid var(--line);border-radius:12px;padding:17px;background:var(--panel)}.route b{display:block}.route small{color:var(--muted)}
 footer{border-top:1px solid var(--line);padding:24px 0;color:var(--muted);font-size:.85rem}.foot{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 @media(max-width:850px){.hero-grid{grid-template-columns:1fr}.hero-grid .visual{order:-1}.car{max-height:360px;object-fit:contain}nav{display:none}.features{grid-template-columns:1fr}.routegrid{grid-template-columns:1fr 1fr}}
-@media(max-width:480px){.call{font-size:.8rem;padding:8px 11px}.formgrid{grid-template-columns:1fr}.field.full{grid-column:auto}.routegrid{grid-template-columns:1fr}.hero-grid h1{font-size:2.6rem}.card{padding:13px}}
+@media(max-width:480px){.call{font-size:.8rem;padding:8px 11px}.formgrid{grid-template-columns:1fr}.field.full{grid-column:auto}.routegrid{grid-template-columns:1fr}.hero-grid h1{font-size:2.6rem}.card{padding:13px}.send-actions{grid-template-columns:1fr}.btn{font-size:.92rem}}
 </style>
 </head>
 <body>
@@ -54,7 +56,10 @@ footer{border-top:1px solid var(--line);padding:24px 0;color:var(--muted);font-s
 <div class="field"><label for="phone">Τηλέφωνο επικοινωνίας</label><input id="phone" name="phone" type="tel" placeholder="Το τηλέφωνό σου" required></div>
 <div class="field full"><label for="details">Σημειώσεις (προαιρετικά)</label><input id="details" name="details" placeholder="Αποσκευές, σημείο συνάντησης κ.λπ."></div>
 </div>
-<button class="btn" type="submit">ΣΤΕΙΛΕ ΑΙΤΗΜΑ ΔΙΑΔΡΟΜΗΣ ↗</button>
+<div class="send-actions">
+<button class="btn" type="submit" data-method="whatsapp">ΣΤΕΙΛΕ ΜΕ WHATSAPP ↗</button>
+<button class="btn sms" type="submit" data-method="sms">ΣΤΕΙΛΕ ΜΕ SMS ↗</button>
+</div>
 <p class="note">Το αίτημα δεν αποτελεί επιβεβαιωμένη κράτηση μέχρι να επικοινωνήσουμε μαζί σου.</p>
 </form></div></div>
 <div class="visual"><img class="car" src="seat-leon-fr-burgundy-ecru.png" alt="Μπορντό SEAT Leon ST 2019 με εκρού ουρανό, χωρίς καπέλο ταξί, χωρίς πινακίδα και χωρίς σήμα FR στη μάσκα"></div>
@@ -86,9 +91,24 @@ function setMode(later){nowTab.classList.toggle('active',!later);laterTab.classL
 nowTab.addEventListener('click',()=>setMode(false));laterTab.addEventListener('click',()=>setMode(true));
 document.getElementById('year').textContent=new Date().getFullYear();
 document.getElementById('bookingForm').addEventListener('submit',function(e){
- e.preventDefault();const f=new FormData(this);
- const msg=`ΑΙΤΗΜΑ ΔΙΑΔΡΟΜΗΣ TAXI CHALKIDA%0AΠαραλαβή: ${encodeURIComponent(f.get('pickup'))}%0AΠροορισμός: ${encodeURIComponent(f.get('destination'))}%0AΗμερομηνία: ${encodeURIComponent(f.get('date')||'Άμεσα / κατόπιν συνεννόησης')}%0AΏρα: ${encodeURIComponent(f.get('time')||'Κατόπιν συνεννόησης')}%0AΕπιβάτες: ${encodeURIComponent(f.get('passengers'))}%0AΤηλέφωνο πελάτη: ${encodeURIComponent(f.get('phone'))}%0AΣημειώσεις: ${encodeURIComponent(f.get('details')||'-')}`;
- window.location.href='https://wa.me/306989937090?text='+msg;
+ e.preventDefault();
+ const f=new FormData(this);
+ const body=[
+  'ΑΙΤΗΜΑ ΔΙΑΔΡΟΜΗΣ TAXI CHALKIDA',
+  `Παραλαβή: ${f.get('pickup')}`,
+  `Προορισμός: ${f.get('destination')}`,
+  `Ημερομηνία: ${f.get('date')||'Άμεσα / κατόπιν συνεννόησης'}`,
+  `Ώρα: ${f.get('time')||'Κατόπιν συνεννόησης'}`,
+  `Επιβάτες: ${f.get('passengers')}`,
+  `Τηλέφωνο πελάτη: ${f.get('phone')}`,
+  `Σημειώσεις: ${f.get('details')||'-'}`
+ ].join('\n');
+ const method=e.submitter ? e.submitter.dataset.method : 'whatsapp';
+ if(method==='sms'){
+  window.location.href='sms:+306989937090?&body='+encodeURIComponent(body);
+ }else{
+  window.location.href='https://wa.me/306989937090?text='+encodeURIComponent(body);
+ }
 });
 </script>
 <script>if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js").catch(()=>{}));}</script>
